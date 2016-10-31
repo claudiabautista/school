@@ -42,7 +42,7 @@ class People
 		$conexion=$newConection->getConexion();
 
 		$sentencia="INSERT INTO people (peopleId,dni,cuil,firstName,lastName,birthDate,gender,address,telephone,cellPhone,email,dateUpdate,userUpdate)
-		VALUES (NULL,". $this->dni.",". $this->cuil.",'".$this->firstName."','".$this->lastName."','". $this->birthDate."','". $this->gender."','". $this->address."','". $this->telephone."','". $this->cellPhone."','". $this->email."','". $this->dateUpdate."','". $this->userUpdate."');";
+		VALUES (NULL,". $this->dni.",". $this->cuil.",'".$this->firstName."','".$this->lastName."','". $this->birthDate."','". $this->gender."','". $this->address."','". $this->telephone."','". $this->cellPhone."','". $this->email."','". $this->dateUpdate."',". $this->userUpdate.");";
 		//echo $sentencia;
 		if ($conexion->query($sentencia)) {
 			return 1;
@@ -54,60 +54,42 @@ class People
 		
 	}
 		 
-	public function editar()
+	public function edit()
 	{
 		
 		$nuevaConexion=new Conexion();
 		$conexion=$nuevaConexion->getConexion();
 		
-		$sentencia="UPDATE personas SET firstName = '$this->firstName', lastName = '$this->lastName', dni = $this->dni, cuil = '$this->cuil', birthDate = '$this->birthDate', gender = '$this->gender', address = '$this->address', telephone = '$this->telephone' , cellPhone = '$this->cellPhone', email = '$this->email', dateUpdate = '$this->dateUpdate' WHERE peopleId = $this->peopleId";
+		$sentencia="UPDATE people SET firstName = '$this->firstName', lastName = '$this->lastName', dni = $this->dni, cuil = '$this->cuil', birthDate = '$this->birthDate', gender = '$this->gender', address = '$this->address', telephone = '$this->telephone' , cellPhone = '$this->cellPhone', email = '$this->email', dateUpdate = '$this->dateUpdate', userUpdate = $this->userUpdate WHERE peopleId = $this->peopleId";
 		//echo $sentencia;			
 		if ($conexion->query($sentencia)) {
 			return 1;
-		}/*else
-		{
-			$consulta="SELECT * FROM personas WHERE peopleId<>'$this->peopleId' AND dni='$this->dni'";
-							
-			if (mysqli_num_rows($conexion->query($consulta))>0)
-			{
-				echo "El DNI, ingresado ya existe"."<br><br>";
-				echo "<a href='?men=personas&id=3&peopleId=".$this->peopleId."'>Regresar</a>";	
-					
-			}
-			$consulta="SELECT * FROM personas WHERE peopleId<>'$this->peopleId' AND cuil='$this->cuil'";
-			$resultado=$conexion->query($consulta);
-			if (mysqli_num_rows($conexion->query($consulta))>0)
-			{
-				echo "El CUIL, ingresado ya existe"."<br><br>";
-				echo "<a href='?men=personas&id=3&peopleId=".$this->peopleId."'>Regresar</a>";		
-			}	
-			//return $sentencia."<br>"."Error al ejecutar la sentencia".$conexion->errno." :".$conexion->error;
-		}*/
+		}
 	}
 
-	public function eliminar()
+	public function delete() 
 	{
 		$nuevaConexion=new Conexion();
 		$conexion=$nuevaConexion->getConexion();
 		
-		$sentencia="DELETE FROM personas WHERE peopleId=".$this->peopleId;
-		if ($conexion->query($sentencia)) {
-			header("Location:index.php?id=1");
-			
-		}else
+		$sentencia="DELETE FROM people WHERE peopleId=".$this->peopleId;
+		if ($conexion->query($sentencia)) 
 		{
+			return 1;
+			
+		}else{
 			return $sentencia."<br>"."Error al ejecutar la sentencia".$conexion->errno." :".$conexion->error;
 		}
 	
 	}
 
-	public function buscar()
+	public function search()
 	{
 		$nuevaConexion=new Conexion();
 		$conexion=$nuevaConexion->getConexion();
 		
-		$sentencia="SELECT * FROM personas";
-		if($this->peopleId!=NULL || $this->firstName!=NULL || $this->lastName!=NULL || $this->dni!=NULL || $this->cuil!=NULL || $this->birthDate!=NULL || $this->gender!=NULL || $this->cellPhone=NULL || $this->email!=NULL || $this->dateUpdate!=NULL )
+		$sentencia="SELECT * FROM people";
+		if($this->peopleId!=NULL || $this->firstName!=NULL || $this->lastName!=NULL || $this->dni!=NULL || $this->cuil!=NULL || $this->birthDate!=NULL || $this->gender!=NULL || $this->cellPhone=NULL || $this->email!=NULL || $this->dateUpdate!=NULL || $this->userUpdate!=NULL )
 		{
 			$sentencia.=" WHERE ";
 		
@@ -129,7 +111,7 @@ class People
 				
 		if($this->dni!=NULL)
 		{
-			$sentencia.=" dni LIKE '%$this->dni%' && ";
+			$sentencia.=" dni = $this->dni && ";
 		}
 		
 		if($this->cuil!=NULL)
@@ -144,7 +126,7 @@ class People
 		
 		if($this->gender!=NULL)
 		{
-			$sentencia.=" gender LIKE '%$this->gender%' && ";
+			$sentencia.=" gender = '$this->gender' && ";
 		}
 		
 		if($this->cellPhone!=NULL)
@@ -161,6 +143,11 @@ class People
 		{
 			$sentencia.=" dateUpdate LIKE '%$this->dateUpdate%' && ";
 		}
+
+		if($this->userUpdate!=NULL)
+		{
+			$sentencia.=" userUpdate = $this->userUpdate && ";
+		}
 		
 		
 		
@@ -168,7 +155,7 @@ class People
 		
 		}
 		
-		$sentencia.="  ORDER BY firstName,lastName";	
+		$sentencia.="  ORDER BY lastName";	
 		
 		//echo $sentencia;
 
@@ -178,7 +165,7 @@ class People
 	
 	   	
 	public function __get($var)
-   {
+    {
 		return $this->$var;
 	
 	}
