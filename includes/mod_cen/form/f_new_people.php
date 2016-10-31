@@ -1,4 +1,20 @@
-<form action="index.php?men=persona&id=1" method="POST" >
+<form action="index.php?men=people&id=1" method="POST" >
+	<div>
+		<div>
+			DNI:<br>
+			<input name="dni" id="dni" type="text" value="<?php echo $info_people->dni ?>"size="8"  placeholder="solo números"   pattern="[0-9]{8}" required>			
+		</div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+
+	</div>
+
+
 		<table>
 			<tr>
 				<th>DNI:</th>

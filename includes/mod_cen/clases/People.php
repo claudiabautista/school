@@ -1,5 +1,5 @@
 <?php   
-include_once('c_conexion.php');
+include_once('Conexion.php');
 
 class People
 {

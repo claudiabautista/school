@@ -1,37 +1,37 @@
 <?php
-		include_once('includes/mod_cen/clases/c_persona.php');
+		include_once('includes/mod_cen/clases/People.php');
 		
 		if(isset($_POST['nuevo'])  ){
 			
 		//var_dump($_POST);		
 		
-			if($_POST['persona_id']<>'') {
-				$persona= new Persona($_POST['persona_id'],"ALUMNO",$_POST['dni'],$_POST['cuil'],$_POST['apellido'],$_POST['nombre'],$_POST['fecha_nac'],$_POST['sexo'],$_POST['telefono'],$_POST['celular'],$_POST['direccion'],$_POST['email'],'2015-10-02');	
-				$editar_persona=$persona->editar();
-				if($editar_persona==1) {
+			if($_POST['peopleId']<>'') {
+				$People= new People($_POST['peopleId'],"ALUMNO",$_POST['dni'],$_POST['cuil'],$_POST['apellido'],$_POST['nombre'],$_POST['fecha_nac'],$_POST['sexo'],$_POST['telefono'],$_POST['celular'],$_POST['direccion'],$_POST['email'],'2015-10-02');	
+				$editar_People=$People->editar();
+				if($editar_People==1) {
 					echo "<b>editado con exito...</b>";						
 				}	
 			}else {
-				$persona= new Persona(null,3,$_POST['dni'],$_POST['cuil'],$_POST['apellido'],$_POST['nombre'],$_POST['fecha_nac'],$_POST['sexo'],$_POST['telefono'],$_POST['celular'],$_POST['direccion'],$_POST['email'],'2015-10-02');
-				$nuevo_persona=$persona->agregar();			
-				if($nuevo_persona==1) {
-					echo "persona agregado...";						
+				$People= new People(null,3,$_POST['dni'],$_POST['cuil'],$_POST['apellido'],$_POST['nombre'],$_POST['fecha_nac'],$_POST['sexo'],$_POST['telefono'],$_POST['celular'],$_POST['direccion'],$_POST['email'],'2015-10-02');
+				$nuevo_People=$People->agregar();			
+				if($nuevo_People==1) {
+					echo "People agregado...";						
 				}
 			} 
 		}	
-		 if(isset($_GET['persona_id']) ) {
-			if(isset($_GET['persona_id'])) {
-				$persona= new Persona($_GET['persona_id']);
-			}else{
-				$persona= new Persona();
+		 if(isset($_GET['peopleId']) ) {
+			//if(isset($_GET['peopleId'])) {
+				$people= new People($_GET['peopleId']);
+			//}else{
+			//	$People= new People();
 			}
-			$buscar_persona= $persona->buscar();
-			$dato_persona=mysqli_fetch_object($buscar_persona);			
-			include_once("includes/mod_cen/formularios/f_persona_nuevo.php");					
-			//echo "llego persona_id";
+			$search_people= $people->search();
+			$info_people=mysqli_fetch_object($search_people);			
+			include_once("includes/mod_cen/form/f_new_people.php");					
+			//echo "llego peopleId";
 		}else {		
-			$dato_persona= new Persona();
-			include_once("includes/mod_cen/formularios/f_persona_nuevo.php");		
+			$info_people= new People();
+			include_once("includes/mod_cen/form/f_new_people.php");	
 		}	
 ?>
 		
