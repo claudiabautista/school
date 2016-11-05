@@ -19,8 +19,10 @@
 				}
 			} 
 		}	
+		 //si por url trae variable peopleId 
 		 if(isset($_GET['peopleId']) ) {
 			//if(isset($_GET['peopleId'])) {
+		 		//creo objeto people con atributo peopleId que vino de url
 				$people= new People($_GET['peopleId']);
 			//}else{
 			//	$People= new People();
