@@ -23,6 +23,36 @@ class Users
 		 	$this->userUpdate = $userUpdate;		 	 
 	}
 	
+	public static function type($valor)
+	{
+		switch ($valor) {
+			case '1':
+				$tipo="admin";
+				# code...
+				break;
+			case '2':
+				$tipo="profesor";
+				break;
+			case '3':
+				$tipo="preceptora";
+				break;
+			case '4':
+				$tipo="director";
+				break;			
+			case '6':
+				$tipo="tutor";
+				break;
+			case '7':
+				$tipo="alumno";
+				break;
+			
+			default:
+				$tipo="alumno";
+				break;
+		}
+		return $tipo;
+	}
+
 	public function add()
 	{
 		

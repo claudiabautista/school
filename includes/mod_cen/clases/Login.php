@@ -1,7 +1,7 @@
 <?php
-include_once("conexion.php");
-include_once("referente.php");
-include_once("persona.php");
+include_once("Conexion.php");
+include_once("Users.php");
+include_once("People.php");
 
 class Login
 {
@@ -16,28 +16,33 @@ function __construct($username=null, $password=null, $conexion=null)
 	$this->conexion=$conexion;
 }
 
-public function iniciarSesion()
+public function startSesion()
 {
 	$nuevaConexion= new Conexion();
 	$conexion=$nuevaConexion->getConexion();
 	$pmd5=md5($this->password);
-	$consulta="SELECT * FROM usuarios WHERE username='".$this->username."' && password='".$pmd5."'";
+	$consulta="SELECT * FROM users WHERE username='".$this->username."' && password='".$pmd5."'";
+	
 	if($resultado=$conexion->query($consulta)) 
 	{
-		$elemento=mysqli_fetch_object($resultado);
+		$user=mysqli_fetch_object($resultado);
 		//iniciamos session
-		session_start();
+		//session_start();
 		//cargamos valores session
-		$_SESSION["username"]=$elemento->username;
-		$_SESSION["referenteId"]=$elemento->referenteId;
-		$referente= new Referente($elemento->referenteId);
-		$referente = $referente->getContacto();
-		$_SESSION["tipo"]=$referente->getTipo();
-		$persona="SELECT referentes.referenteId,personas.nombre,personas.apellido,personas.personaId FROM referentes inner join personas on referentes.personaId=personas.personaId WHERE referenteId=".$elemento->referenteId."";	
-		$result=$conexion->query($persona);
+		$_SESSION["username"]=$user->username;
+		//$_SESSION["referenteId"]=$elemento->referenteId;
+		//$referente= new Referente($elemento->referenteId);
+		//$referente = $referente->getContacto();
+		$_SESSION["tipo"]=Users::type('1');
+
+		$people="SELECT * FROM people WHERE peopleId=".$user->peopleId;
+
+		/*$persona="SELECT referentes.referenteId,personas.nombre,personas.apellido,personas.personaId FROM referentes inner join personas on referentes.personaId=personas.personaId WHERE referenteId=".$elemento->referenteId."";	*/
+		$result=$conexion->query($people);
 		$dato=mysqli_fetch_object($result);	
-		$_SESSION["nombre"]=$dato->nombre;
-		$_SESSION["personaId"]=$dato->personaId;				
+		$_SESSION["nombre"]=$dato->firstName;
+		$_SESSION["apellido"]=$dato->lastName;				
+		//$_SESSION["personaId"]=$dato->personaId;				
 	}else {
 		return "error";
 	}		

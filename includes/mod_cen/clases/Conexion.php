@@ -4,7 +4,7 @@ class Conexion
 
  private $host="localhost";
  private $user="root";
- private $pass="vico.pas";
+ private $pass="vico.pascas";
  private $db="colegio";
  private $conexion;
  

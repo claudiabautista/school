@@ -1,6 +1,7 @@
 <?php
 		include_once('includes/mod_cen/clases/People.php');
 		
+		//Si este archivo carga por un Post verifica si existe nuevo.
 		if(isset($_POST['nuevo'])  ){
 			
 		//var_dump($_POST);		
@@ -20,13 +21,13 @@
 			} 
 		}	
 		 //si por url trae variable peopleId 
-		 if(isset($_GET['peopleId']) ) {
+		if(isset($_GET['peopleId']) ) {
 			//if(isset($_GET['peopleId'])) {
 		 		//creo objeto people con atributo peopleId que vino de url
 				$people= new People($_GET['peopleId']);
 			//}else{
 			//	$People= new People();
-			}
+			
 			$search_people= $people->search();
 			$info_people=mysqli_fetch_object($search_people);			
 			include_once("includes/mod_cen/form/f_new_people.php");					

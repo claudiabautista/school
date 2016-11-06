@@ -4,10 +4,10 @@
 			$id=$_GET['id'];
 			$men=$_GET['men']; 
 			switch ($men){
-				case "persona":
+				case "people":
 					switch ($id) { 
 						case 1: 
-							include("includes/mod_cen/persona/s_persona_nuevo_modificar.php"); 
+							include("includes/mod_cen/persona/s_people_new_and_update.php"); 
 							break;
 						case 2: 
 							include("includes/mod_cen/persona/s_persona_buscar.php"); 

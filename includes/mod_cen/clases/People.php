@@ -17,7 +17,7 @@ class People
  	private $dateUpdate;
  	private $userUpdate;
  
- 	function __construct($peopleId=NULL,$dni=NULL,$cuil=NULL,$firstName=NULL,$lastName=NULL,$birthDate=NULL,$gender=NULL,$address=NULL,$telephone=NULL,$cellPhone=NULL,$email=NULL,$dateUpdate=NULL,$userDate=NULL)
+ 	function __construct($peopleId=NULL,$dni=NULL,$cuil=NULL,$firstName=NULL,$lastName=NULL,$birthDate=NULL,$gender=NULL,$address=NULL,$telephone=NULL,$cellPhone=NULL,$email=NULL,$dateUpdate=NULL,$userUpdate=NULL)
 	{
 			 //seteo los atributos
 		 	$this->peopleId = $peopleId;
