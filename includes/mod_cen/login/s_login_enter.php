@@ -4,7 +4,7 @@ if(isset($_POST['ingreso'])) {
 	$login= new Login($_POST['username'],$_POST['password']);
 	$buscar_usuario= $login->startSesion();
 	if(isset($_SESSION['username'])) {
-		 echo "ingreso con exito";	
+		 //echo "ingreso con exito";	
 		 echo '<script type="text/javascript">';
 	echo 'function redireccion(){';
 	echo 'window.location="index.php"};';
@@ -17,7 +17,7 @@ if(isset($_POST['ingreso'])) {
 	}
 }
 if(isset($_SESSION['username'])) {
-		echo "Sessión iniciada...".$_SESSION['username'];	
+		//echo "Sessión iniciada...".$_SESSION['username'];	
 	}else {
     include("includes/mod_cen/form/f_login_ingresar.php");
 }?>

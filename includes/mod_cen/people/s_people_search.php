@@ -86,7 +86,7 @@
        });					
 </script>	
 <?php
-			include_once("includes/mod_cen/formularios/f_persona_buscar.php");					
+			include_once("includes/mod_cen/form/f_people_search.php");					
 	
 ?>
 			

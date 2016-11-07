@@ -30,6 +30,7 @@ public function startSesion()
 		//session_start();
 		//cargamos valores session
 		$_SESSION["username"]=$user->username;
+		$_SESSION["peopleId"]=$user->peopleId;
 		//$_SESSION["referenteId"]=$elemento->referenteId;
 		//$referente= new Referente($elemento->referenteId);
 		//$referente = $referente->getContacto();

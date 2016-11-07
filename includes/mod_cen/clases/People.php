@@ -19,7 +19,7 @@ class People
  
  	function __construct($peopleId=NULL,$dni=NULL,$cuil=NULL,$firstName=NULL,$lastName=NULL,$birthDate=NULL,$gender=NULL,$address=NULL,$telephone=NULL,$cellPhone=NULL,$email=NULL,$dateUpdate=NULL,$userUpdate=NULL)
 	{
-			 //seteo los atributos
+			 //asigna los valores que vienen como parametros en los atributos del objeto people
 		 	$this->peopleId = $peopleId;
 		 	$this->dni =$dni;
 		 	$this->cuil =$cuil;		 	
@@ -41,8 +41,8 @@ class People
 		$newConection=new Conexion();
 		$conexion=$newConection->getConexion();
 
-		$sentencia="INSERT INTO people (peopleId,dni,cuil,firstName,lastName,birthDate,gender,address,telephone,cellPhone,email,dateUpdate,userUpdate)
-		VALUES (NULL,". $this->dni.",". $this->cuil.",'".$this->firstName."','".$this->lastName."','". $this->birthDate."','". $this->gender."','". $this->address."','". $this->telephone."','". $this->cellPhone."','". $this->email."','". $this->dateUpdate."',". $this->userUpdate.");";
+		$sentencia="INSERT INTO people (peopleId,dni,cuil,lastName,firstName,birthDate,gender,address,telephone,cellPhone,email,dateUpdate,userUpdate)
+		VALUES (NULL,". $this->dni.",". $this->cuil.",'".$this->lastName."','".$this->firstName."','". $this->birthDate."','". $this->gender."','". $this->address."','". $this->telephone."','". $this->cellPhone."','". $this->email."','". $this->dateUpdate."',". $this->userUpdate.");";
 		//echo $sentencia;
 		if ($conexion->query($sentencia)) {
 			return 1;
@@ -157,7 +157,7 @@ class People
 		
 		$sentencia.="  ORDER BY lastName";	
 		
-		//echo $sentencia;
+		echo $sentencia;
 
 		return $conexion->query($sentencia);
 			

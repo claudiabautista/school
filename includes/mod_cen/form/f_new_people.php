@@ -2,14 +2,15 @@
 	<div>
 		<div>
 			<div>Tipo</div>
-			<div><select name="tipo">';
+			<div>
+				<select name="userType">';
 		  				<option selected value="alumno">Alumno</option>								  						
-						<option selected value="profesor">Alumno</option>								  								  											
-						<option selected value="alumno">Alumno</option>								  						
-						<option selected value="alumno">Alumno</option>								  						
-						<option selected value="alumno">Alumno</option>								  						
-						<option selected value="alumno">Alumno</option>								  							
-		  		</select>
+						<option value="tutor">Tutor</option>								  							
+						<option value="profesor">Profesor</option>								  								  										
+						<option value="preceptor">Preceptora</option>								  						
+						<option value="director">Director</option>								  						
+						<option value="rti">RTI</option>			  						
+				</select>
 		  	</div>
 		</div>
 
@@ -36,8 +37,21 @@
 		</div>
 		<div>
 			Sexo:<br>
-			<input type="radio" id="gender" name="genderm" value="m" <?php if($info_people->gender=='m') echo "checked"; ?> >Masculino
-			<input type="radio" id="gender" name="genderf" value="f" <?php if($info_people->gender=='f') echo "checked"; ?> >Femenino
+			<?php 
+			//var_dump($info_people);
+			if($info_people->gender<>NULL){
+				?>				
+				<input type="radio" id="genderf" name="gender" value="f" <?php if($info_people->gender=='f') echo "checked"; ?> >Femenino	
+				<input type="radio" id="genderm" name="gender" value="m" <?php if($info_people->gender=='m') echo "checked"; ?> >Masculino
+				<?php
+			}else{
+				?>
+				<input type="radio" id="genderf" name="gender" value="f" checked>Femenino	
+				<input type="radio" id="genderm" name="gender" value="m" >Masculino
+				<?php
+			}
+			?>
+			
 			
 		</div>
 		<div>
@@ -58,9 +72,9 @@
 		</div>
 		<div>
 			<input type="hidden" id="peopleId" name="peopleId" value="<?php echo $info_people->peopleId ?>"/>				
-			<input type="hidden" id="dateUpdate" name="dateUpdate" value="<?php echo $info_people->dateUpdate ?>"/>
-			<input type="hidden" id="userUpdate" name="userUpdate" value="<?php echo $info_people->userUpdate ?>"/>
-			<input type="submit" name="nuevo" value="Aplicar cambios" />
+			<input type="hidden" id="dateUpdate" name="dateUpdate" value="<?php echo date('Y-d-m h:i:s') ?>"/>
+			<input type="hidden" id="userUpdate" name="userUpdate" value="<?php echo $_SESSION['peopleId'] ?>"/>
+			<input type="submit" name="newUser" value="Aplicar cambios" />
 		</div>
 		<div></div>
 
