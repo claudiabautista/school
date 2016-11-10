@@ -1,4 +1,4 @@
-<form name="buscar_persona" action="index.php?men=persona&id=2" method="POST" >
+<form name="buscar_persona" action="index.php?men=people&id=2" method="POST" >
 				<ul>
 					<li><h2>Buscar Persona</h2></li>
 					<li><label>DNI</label><input name="dni" id="dni" type="text" size="25"  placeholder="solo números" pattern="[0-9]{8}" ></li>

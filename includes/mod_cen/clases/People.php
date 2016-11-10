@@ -5,9 +5,9 @@ class People
 {
 	private $peopleId;
  	private $dni;
- 	private $cuil;
- 	private $firstName;
+ 	private $cuil; 	
  	private $lastName;
+ 	private $firstName;
  	private $birthDate;
  	private $gender;
  	private $address;
@@ -17,14 +17,14 @@ class People
  	private $dateUpdate;
  	private $userUpdate;
  
- 	function __construct($peopleId=NULL,$dni=NULL,$cuil=NULL,$firstName=NULL,$lastName=NULL,$birthDate=NULL,$gender=NULL,$address=NULL,$telephone=NULL,$cellPhone=NULL,$email=NULL,$dateUpdate=NULL,$userUpdate=NULL)
+ 	function __construct($peopleId=NULL,$dni=NULL,$cuil=NULL,$lastName=NULL,$firstName=NULL,$birthDate=NULL,$gender=NULL,$address=NULL,$telephone=NULL,$cellPhone=NULL,$email=NULL,$dateUpdate=NULL,$userUpdate=NULL)
 	{
 			 //asigna los valores que vienen como parametros en los atributos del objeto people
 		 	$this->peopleId = $peopleId;
 		 	$this->dni =$dni;
-		 	$this->cuil =$cuil;		 	
-		 	$this->firstName = $firstName;
+		 	$this->cuil =$cuil;		 			 	
 		 	$this->lastName = $lastName;
+		 	$this->firstName = $firstName;
 		 	$this->birthDate = $birthDate;
 		 	$this->gender = $gender;
 			$this->address = $address;
@@ -89,7 +89,7 @@ class People
 		$conexion=$nuevaConexion->getConexion();
 		
 		$sentencia="SELECT * FROM people";
-		if($this->peopleId!=NULL || $this->firstName!=NULL || $this->lastName!=NULL || $this->dni!=NULL || $this->cuil!=NULL || $this->birthDate!=NULL || $this->gender!=NULL || $this->cellPhone=NULL || $this->email!=NULL || $this->dateUpdate!=NULL || $this->userUpdate!=NULL )
+		if($this->peopleId!=NULL || $this->lastName!=NULL || $this->firstName!=NULL || $this->dni!=NULL || $this->cuil!=NULL || $this->birthDate!=NULL || $this->gender!=NULL || $this->cellPhone=NULL || $this->email!=NULL || $this->dateUpdate!=NULL || $this->userUpdate!=NULL )
 		{
 			$sentencia.=" WHERE ";
 		
@@ -98,15 +98,14 @@ class People
 			$sentencia.=" peopleId=$this->peopleId && ";
 		}
 		
+		if($this->lastName!=NULL)
+		{
+			$sentencia.=" lastName LIKE '%$this->lastName%' && ";
+		}
 		
 		if($this->firstName!=NULL)
 		{
 			$sentencia.=" firstName LIKE '%$this->firstName%' && ";
-		}
-		
-		if($this->lastName!=NULL)
-		{
-			$sentencia.=" lastName LIKE '%$this->lastName%' && ";
 		}
 				
 		if($this->dni!=NULL)
