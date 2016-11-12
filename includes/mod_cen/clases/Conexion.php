@@ -4,11 +4,7 @@ class Conexion
 
  private $host="localhost";
  private $user="root";
-<<<<<<< HEAD
  private $pass="claudia";
-=======
- private $pass="vico.pascas";
->>>>>>> upstream/master
  private $db="colegio";
  private $conexion;
  
