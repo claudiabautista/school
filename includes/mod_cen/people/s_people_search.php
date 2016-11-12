@@ -16,7 +16,8 @@
 						var url="includes/mod_cen/clases/json_bus_per.php";
 					
 						$("#tablajson tbody").html("");
-						$.getJSON(url,{apellido: apellido,nombre: nombre,dni:dni},function(resultado){
+						//alert(apellido);
+						$.getJSON(url,{apellido:apellido,nombre:nombre,dni:dni},function(resultado){
 						$.each(resultado, function(i,cliente){
 						var newRow =
 						"<tr>"
@@ -24,7 +25,7 @@
 							+"<td>"+cliente.nombre+"</td>"
 							+"<td>"+cliente.apellido+"</td>"
 							+"<td>"+cliente.dni+"</td>"
-							+"<td><a href='index.php?men=persona&id=1&persona_id="+cliente.id+"'><img src='img/iconos/modificar_p.png' alt='modificar' longdesc='Modificar Datos de Persona'></a></td>"		
+							+"<td><a href='index.php?men=people&id=1&peopleId="+cliente.id+"'><img src='img/iconos/modificar_p.png' alt='modificar' longdesc='Modificar Datos de Persona'></a></td>"		
 							
 						+"</tr>";
 						$(newRow).appendTo("#tablajson tbody");
@@ -86,7 +87,7 @@
        });					
 </script>	
 <?php
-			include_once("includes/mod_cen/formularios/f_persona_buscar.php");					
+			include_once("includes/mod_cen/form/f_people_search.php");					
 	
 ?>
 			

@@ -9,6 +9,8 @@ session_start();
    	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
    	<meta name="description" content="School Manager">
    	<meta name="keywords" content="School Manager">   	
+   	<script src="jquery/jquery-1.6.2.min.js"></script>
+  	<script src="jquery/jquery.lightbox-0.5.min.js"></script>
 	</head>
 	<body>
 		<div>			
@@ -49,4 +51,5 @@ session_start();
 			</footer>		
 		</div>
 	</body>
+
 </html>
