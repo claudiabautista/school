@@ -1,5 +1,5 @@
 <form action="index.php?men=people&id=1" method="POST" >
-	<div>
+	<div class="container-fluid">
 		<div>
 			<div>Tipo</div>
 			<div>
